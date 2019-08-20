@@ -13,9 +13,9 @@
       <ion-label>
         Province :
       </ion-label>
-      <ion-select [(ngModel)]="sendData">
-        <div *ngFor="let x of filterX">
-            <ion-select-option [value]="x">{{x}}</ion-select-option>
+      <ion-select [(ngModel)]="sendData" (ngModelChange)="searchProvince($event)">
+        <div *ngFor="let Province of filterX">
+            <ion-select-option [value]="Province" >{{Province}}</ion-select-option>
         </div>
       </ion-select>
     </ion-item>
@@ -34,9 +34,9 @@
         District :
       </ion-label>
       <ion-select>
-          <div *ngFor="let z of filterZ">
-              <ion-select-option [value]="z">{{z}}</ion-select-option>
-          </div>
+<!--          <div *ngFor="let z of filterZ">-->
+<!--              <ion-select-option [value]="z">{{z}}</ion-select-option>-->
+<!--          </div>-->
       </ion-select>
 
     </ion-item>

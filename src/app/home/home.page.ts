@@ -22,8 +22,8 @@ export class HomePage {
       // console.log(res);
       this.users = res;
       this.filterProvince();
-      this.filterAmphoe();
-      this.filterDistrict();
+      // this.filterAmphoe();
+      // this.filterDistrict();
     });
   }
 
@@ -37,16 +37,29 @@ export class HomePage {
     }
     // console.log(this.filterX);
   }
-  filterAmphoe(){
-    for (let i = 0; i < this.users.length; i++) {
-      let a = this.users[i].amphoe;
+  searchProvince(name){
+    console.log(name);
+    let amphor:any = this.users.filter(data => data.province === name);
+    this.filterY = [];
+    for (let i = 0; i < amphor.length; i++) {
+      let a = amphor[i].amphoe;
       // tslint:disable-next-line:triple-equals
       if (this.filterY.indexOf(a) == -1) {
         this.filterY.push(a);
       }
     }
-
   }
+  // filterAmphoe(){
+  //   for (let i = 0; i < this.users.length; i++) {
+  //     let a = this.users[i].amphoe;
+  //     // tslint:disable-next-line:triple-equals
+  //     if (this.filterY.indexOf(a) == -1) {
+  //       this.filterY.push(a);
+  //     }
+  //   }
+  //
+  // }
+
   filterDistrict(){
     for (let i = 0; i < this.users.length; i++) {
       let a = this.users[i].district;
@@ -57,4 +70,7 @@ export class HomePage {
     }
 
   }
+
 }
+
+
