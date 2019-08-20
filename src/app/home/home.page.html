@@ -14,8 +14,8 @@
         Province :
       </ion-label>
       <ion-select>
-          <div *ngFor="let user of users;let i = index">
-        <ion-select-option [value]="user"  *ngIf="i<10 && users[i]">{{user.province}}</ion-select-option>
+          <div *ngFor="let x of filterX;let i = index">
+        <ion-select-option [value]="x">{{x}}</ion-select-option>
           </div>
       </ion-select>
     </ion-item>

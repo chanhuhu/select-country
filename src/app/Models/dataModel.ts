@@ -1,4 +1,4 @@
-export class DataModel {
+export interface DataModel {
     province: string;
     amphoe: string;
     district: string;
