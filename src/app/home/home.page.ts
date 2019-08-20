@@ -18,7 +18,7 @@ export class HomePage {
 
   init() {
     this.getJson().subscribe((res) => {
-      // console.log(res)
+       console.log(res)
       this.users = res;
       // console.log(this.users)
     });
