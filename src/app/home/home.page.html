@@ -8,7 +8,31 @@
 
 <ion-content>
   <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+<!--    <p>{{ users | json }}</p>-->
+    <ion-item>
+      <ion-label>
+        Province :
+      </ion-label>
+      <ion-select>
+        <ion-select-option [value]="user" *ngFor="let user of users">{{user.province}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        Amphoe :
+      </ion-label>
+      <ion-select>
+        <ion-select-option></ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        District :
+      </ion-label>
+      <ion-select>
+      <ion-select-option></ion-select-option>
+      </ion-select>
+
+    </ion-item>
   </div>
 </ion-content>
