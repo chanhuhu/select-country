@@ -13,10 +13,10 @@
       <ion-label>
         Province :
       </ion-label>
-      <ion-select>
-          <div *ngFor="let x of filterX;let i = index">
-        <ion-select-option [value]="x">{{x}}</ion-select-option>
-          </div>
+      <ion-select [(ngModel)]="sendData">
+        <div *ngFor="let x of filterX">
+            <ion-select-option [value]="x">{{x}}</ion-select-option>
+        </div>
       </ion-select>
     </ion-item>
     <ion-item>
@@ -24,7 +24,9 @@
         Amphoe :
       </ion-label>
       <ion-select>
-        <ion-select-option></ion-select-option>
+          <div *ngFor="let y of filterY">
+              <ion-select-option [value]="y">{{y}}</ion-select-option>
+          </div>
       </ion-select>
     </ion-item>
     <ion-item>
@@ -32,7 +34,9 @@
         District :
       </ion-label>
       <ion-select>
-      <ion-select-option></ion-select-option>
+          <div *ngFor="let z of filterZ">
+              <ion-select-option [value]="z">{{z}}</ion-select-option>
+          </div>
       </ion-select>
 
     </ion-item>
