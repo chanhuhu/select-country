@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
-
+import { UserService } from '../Services/user.service';
 
 
 @Component({
@@ -9,9 +8,18 @@ import { HttpClient} from '@angular/common/http';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  users;
   // tslint:disable-next-line:variable-name
+  constructor(private userService: UserService) {
+    this.init();
+  }
 
-  constructor() { }
+  init() {
+    this.userService.getJson().subscribe((res) => {
+      console.log(res);
+      this.users = res;
+    });
+  }
 
 
 }
