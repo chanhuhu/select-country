@@ -45,7 +45,6 @@ export class HomePage {
         this.filterY.push(a);
       }
     }
-    console.log(this.filterY);
   }
   searchAmphoe(Aname) {
     let districts: any = this.users.filter(data => data.amphoe === Aname);
