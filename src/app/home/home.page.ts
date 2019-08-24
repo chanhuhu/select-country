@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from '../Services/user.service';
-import { DataModel } from '../Models/dataModel';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-home',
@@ -8,57 +8,52 @@ import { DataModel } from '../Models/dataModel';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  // tslint:disable-next-line:variable-name
-  filterX: any[] = [];
-  filterY: any[] = [];
-  filterZ: any[] = [];
-  constructor(private userService: UserService) {
+  x;
+  y;
+  k;
+  j;
+  result;
+  provinces: any[] = [];
+  amphoes: any[] = [];
+  districts: any[] = [];
+  sendProvince;
+  sendAmphoe;
+  SendDistrict;
+  constructor(private userService: UserService ) {
     this.init();
   }
-  users;
-  sendData1;
-  sendData2;
   init() {
-    this.userService.getJson().subscribe((res) => {
-      this.users = res;
-      this.filterProvince();
+    this.userService.getJson().subscribe(response => {
+      this.x = response;
+      this.y =  _.groupBy(this.x, 'province');
+      for (this.k in this.y) {
+        this.provinces.push(this.k);
+        this.y[this.k] = _.groupBy(this.y[this.k], 'amphoe');
+        for (this.j in this.y[this.k]) {
+          this.y[this.k][this.j] = _.groupBy(this.y[this.k][this.j], 'district');
+        }
+      }
+      this.result = this.y;
     });
   }
-
-  filterProvince() {
-    for (let i = 0; i < this.users.length; i++) {
-      let a = this.users[i].province;
-      // tslint:disable-next-line:triple-equals
-      if (this.filterX.indexOf(a) == -1) {
-        this.filterX.push(a);
-      }
-    }
-  }
-  searchProvince(name) {
-    let amphoes: any = this.users.filter(data => data.province === name);
-    this.filterY = [];
-    this.filterZ = [];
-    for (let i = 0; i < amphoes.length; i++) {
-      let a = amphoes[i].amphoe;
-      // tslint:disable-next-line:triple-equals
-      if (this.filterY.indexOf(a) == -1) {
-        this.filterY.push(a);
-      }
-    }
-  }
-  searchAmphoe(Aname) {
-    let districts: any = this.users.filter(data => data.amphoe === Aname);
-    this.filterY = [];
-    this.filterZ = [];
-    for (let i = 0; i < districts.length; i++) {
-      let a = districts[i].district;
-      // tslint:disable-next-line:triple-equals
-      if (this.filterZ.indexOf(a) == -1) {
-        this.filterZ.push(a);
-      }
+  selectProvice(pName) {
+    this.amphoes = [];
+    this.districts = [];
+    console.log(this.districts);
+    let p = _.result(this.result, pName);
+    for (var prop in p) {
+      this.amphoes.push(prop);
     }
   }
 
+  selectAmphoe(aName) {
+    this.districts = [];
+    let p = _.result(this.result, this.sendProvince);
+    let a = _.result(p, aName);
+    for (var prop in a) {
+      this.districts.push(prop);
+    }
+  }
 }
 
 

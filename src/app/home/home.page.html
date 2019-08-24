@@ -8,36 +8,53 @@
 
 <ion-content>
   <div class="ion-padding">
-    <ion-item>
-      <ion-label>
-        Province :
-      </ion-label>
-      <ion-select [(ngModel)]="sendData1" (ngModelChange)="searchProvince($event)">
-        <div *ngFor="let Province of filterX">
-            <ion-select-option [value]="Province" >{{Province}}</ion-select-option>
-        </div>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label>
-        Amphoe :
-      </ion-label>
-      <ion-select [(ngModel)]="sendData2" (ngModelChange)="searchAmphoe($event)">
-          <div *ngFor="let y of filterY">
-              <ion-select-option [value]="y">{{y}}</ion-select-option>
-          </div>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label>
-        District :
-      </ion-label>
-      <ion-select>
-          <div *ngFor="let z of filterZ">
-              <ion-select-option [value]="z">{{z}}</ion-select-option>
-          </div>
-      </ion-select>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>
+              <div>
+                Provice:
+              </div>
+            </ion-label>
+            <ion-select [(ngModel)]="sendProvince" (ngModelChange)="selectProvice($event)">
+              <div *ngFor="let province of provinces">
+                <ion-select-option [value]="province" >{{province}}</ion-select-option>
+              </div>
+            </ion-select>
+          </ion-item>
+        </ion-col>
 
-    </ion-item>
+        <ion-col>
+          <ion-item>
+            <ion-label>
+              <div>
+                Amphoe:
+              </div>
+            </ion-label>
+            <ion-select [(ngModel)]="sendAmphoe" (ngModelChange)="selectAmphoe($event)">
+              <div *ngFor="let amphoe of amphoes">
+                <ion-select-option [value]="amphoe" >{{amphoe}}</ion-select-option>
+              </div>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>
+              <div>
+                District:
+              </div>
+            </ion-label>
+            <ion-select [(ngModel)]="SendDistrict">
+              <div *ngFor="let district of districts">
+                <ion-select-option [value]="district" >{{district}}</ion-select-option>
+              </div>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
 </ion-content>
